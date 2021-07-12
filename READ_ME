@@ -1,0 +1,6 @@
+Jupiter notebook looking at matching sample IDs for TCGA COAD samples.
+The MAF file was downloaded directly from the TCGA by searching for - Files: simple nucleotide variation, MuSe, maf, open ; Cases: colon, TCGA, TCGA-COAD (its too big to upload to Git).
+The FPKM values for COAD were download using the R based TCGAbiolinks package, please see the attached R code 'COAD_FPKM'.
+The code runs two separate queries: one for tumour samples by selecting sample type as 'Primary Tumour', one for normal samples by selecting sample type as 'Solid Tissue Normal'. These tables were then extracted as csv files - I could only upload the csv for the normal samples ('FPKM_COAD_normal') here as the tumour file is too large. 
+The Jupiter notebook then works through matching the sample IDs, separately for both tumour and normal samples, from both the TCGA MAF file and the two FPKM files. 
+Overall we seem to have 61 tumour samples and 13 normal samples matching between the MAF (filtered for protein coding variants) and FPKM files.
