@@ -9,10 +9,7 @@ Machine learning classifiers based on genomic variants (SNPs variants within eQT
 * TCGA: Cancer samples from 33 cancer types. https://portal.gdc.cancer.gov/
 * GTEx: Gene expression (TPM) and protein-coding variants (per gene) from GTEx.
 https://gtexportal.org/
-* PancanQTL: Cis-/trans-eQTLs in TCGA samples (regulatory variants). 
-http://bioinfo.life.hust.edu.cn/PancanQTL/
-http://gong_lab.hzau.edu.cn/PancanQTL/download
-Access to all PancanQTL data from https://www.synapse.org/#!Synapse:syn11305829/files/
+* PancanQTL: Cis-/trans-eQTLs in TCGA samples (regulatory variants). http://bioinfo.life.hust.edu.cn/PancanQTL/
 * iso-kTSP: Isoform switches in TCGA samples.
 https://pubmed.ncbi.nlm.nih.gov/25578962/
 
