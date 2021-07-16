@@ -6,12 +6,16 @@
 Machine learning classifiers based on genomic variants (SNPs variants within eQTL regions; protein-coding variants), isoform switching, gene expression data to identify important features discriminating between distinct cancer types.
 
 ### Databases: The Cancer Genome Atlas (TCGA), GTEx, PancanQTL, iso-kTSP.
-* TCGA: Cancer samples from 33 cancer types. https://portal.gdc.cancer.gov/
+* TCGA: Cancer samples from 33 cancer types. 
+  https://portal.gdc.cancer.gov/
 * GTEx: Gene expression (TPM) and protein-coding variants (per gene) from GTEx.
-https://gtexportal.org/
-* PancanQTL: Cis-/trans-eQTLs in TCGA samples (regulatory variants). http://bioinfo.life.hust.edu.cn/PancanQTL/
+  https://gtexportal.org/
+* PancanQTL: Cis-/trans-eQTLs in TCGA samples (regulatory variants). 
+  http://bioinfo.life.hust.edu.cn/PancanQTL/
+  http://gong_lab.hzau.edu.cn/PancanQTL/download
+  All PancanQTL data access: https://www.synapse.org/#!Synapse:syn11305829/files/
 * iso-kTSP: Isoform switches in TCGA samples.
-https://pubmed.ncbi.nlm.nih.gov/25578962/
+  https://pubmed.ncbi.nlm.nih.gov/25578962/
 
 ### Input data: extraction of features from existing databases
 * PancanQTL database: Generate matrices (M1, M2) summarising numbers of local (cis-eQTL; M1) and distant (trans-eQTLs; M2) expression quantitative trait loci (eQTL) per gene.
