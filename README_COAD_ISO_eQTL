@@ -1,0 +1,5 @@
+Attached are two scripts relating to the extraction of isoform switches and eQTLs for COAD.
+I've uploaded the scripts more to just generally show what the isoform switch and eQTL data looks like,
+as the scripts, alongisde the MAF and FPKM files, may need changing to account for the lack of normal MAFs.
+I have downloaded and applied the attached isoform switch and eQTL scripts to 8 cancer types from the TCGA (in case we do end up discrimintating between cancer types)
+with these 8 cancer types selected on the basis of seeming to have a sufficient amount of samples for modelling, whilst having isoform switch data availble. 
