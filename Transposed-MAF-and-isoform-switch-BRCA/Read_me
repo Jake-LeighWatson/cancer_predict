@@ -1,1 +1,26 @@
+Contains 4 scripts demonstrating the parsing of the MAF, FPKM files and isoform files for BRCA
+with two additional scripts showing the retrival of Ensembl IDs for the isoform switches (R script) and one displaying the filtering of FPKM in relation to the isoform switches
 
+Pipeline applied in following order:
+
+1) BRCA_GE_MAF file first
+- This file filters the MAF for protein coding variants and saves as dataframe. 
+- Imports the tumour and normal samples FPKM files
+- Filters for protein coding genes (using previously provided R script)
+- Searches for duplicated genes and changes the name of one, whilst dropping the other three duplicates.
+- Transposes and concatenates the tumour and normal samples into one dataframe, with additonal 'Cancer' column where a value of 1 = tumour, 0 = normal.
+
+2) BRCA_isoform_parse
+- Takes isoform txt file and splits columns to have seperate gene symbol and Entrez ID columns, before saving as new csv.
+
+3) BRCA_isoform_gene_to_ensembl (R script)
+- Isoforms were detected using hg19 => run the R script on the isoform Entrez IDs to return hg38 gene symbol, Ensembl IDs and Entrez IDs.
+- Some genes duplicated with alternative chromosomal locations => these duplicates deleted.
+- Note that some isoform switch genes lost during conversion (two in the case of BRCA).
+- Export isoform switch file with Ensembl IDs
+
+4) BRCA_isoform_switch_filter
+- Checks for isoform switch genes not found in FPKM table
+- Change gene name in isoform switch table for mismatches (two incase of BRCA) -  didn't change name in FPKM as I guess we want these symbols to stay consistant.
+- FPKM file then filtered for isoform switches (with the added 'Cancer' column) - hopefully providing a table ready for modelling. 
+- Note that in other cancer types some genes (one max) were missing in the FPKM file so these genes we're removed from isoform switch table
