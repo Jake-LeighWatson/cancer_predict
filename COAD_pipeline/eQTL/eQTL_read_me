@@ -1,0 +1,23 @@
+This section details the pipeline for the 95 percentile eQTLs (genes with the greatest number of associated of cis and trans eQTLs)
+* note I have similar scripts that do the same but for the top 50 significant genes (adjusted p-valuesfrom PancanQTL) but they have not been uploaded.
+
+1) eQTL parsing utilising the COAD_eQTL_parsing script
+
+- Loads the 2 txt files containing the cis and trans eQTL data from the PancanQTL database. 
+- Creates new columns containing the gene symbol and Entrez ID eQTL
+- Exports the two dataframes containning cis and trans eQTL data as two seperate csv's (COAD_cis_eQTL.csv and COAD_trans_eQTL.csv)
+
+2) The COAD cis and trans eQTL csv's from 1 are then passed through the 'COAD_eQTL_parsing_95' script
+
+- Loads the two csv's
+- Creates new dataframes that only contain the genes where the gene.value_count() is >= 95% quantile
+- These two dataframes are then exported (containing value count as an additional column) as csv's COAD_cis_eQTL_95.csv and COAD_trans_eQTL_95.csv
+
+3) The csv's from 2 are then passed through the 'COAD_eQTL_ensembl_95' R script.
+- Loads the cis and trans 95 csv's
+- Uses biomaRt to convert both the Entrez ID and Gene Symbols (since hg19) to Ensembl ID (hg38)
+    - Conversion on both Entrex and Gene symbol is performed to maximise the number of Ensembl IDs returned since we can loose some during conversion
+- The Entrez and Symbol conversions are returned in seperate tables and are, seperately, joined to the original cis and trans 95 tables (so still have value count col)
+- The 4 new tables are then exported as csv's: COAD_cis_entrez_95.csv, COAD_cis_symbol_95.csv, COAD_trans_entrez_95.csv, COAD_trans_symbol_95.csv
+
+4) The 
