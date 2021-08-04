@@ -1,1 +1,7 @@
+This section details the pipeline for isoform switch filtering utilising the COAD_isoform_parse script.
 
+1) Isoform switch parsing 
+- Loads the COAD isoform switch data downloaded from the iso-ktsp database / paper
+- Creates new columns containing the gene symbol, Entrez ID and transcript IDs for each isoform switch
+- Shows the number of isoform swithces
+- Exports new dataframe as csv ('COAD_isoform_switches.csv')
