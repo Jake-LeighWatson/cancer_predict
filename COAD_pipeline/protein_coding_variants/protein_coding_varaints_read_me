@@ -1,0 +1,19 @@
+This section details the 'potential' pipeline for the protein coding variants.
+
+Only uses one script. Not sure if what I'm doing is what is required though
+
+1)
+
+- Load the FPKM and MAF_protein (VEP = HIGH or MODERATE) dataframes
+- Creates a new MAF_PCV (protein coding variants) table by:
+  - groupby ('Hugo_Symbol','Ensembl_ID','Tumor_Sample_Barcode').size() => count number of instances gene appears per sample
+  - Table also unstacked with NA values filled with 0, and the table is transposed => Sample ID become rows and Genes are columns
+  - I did a few checks (included in script) to see if this provided the number of mutations per gene per sample and it seems to do this
+- Then create a rough plot ('COAD Number of Protein Coding Varaints per Gene - Total Across All Samples') 
+  showing total number of times gene appears across all tumour samples
+- Then create a cleaner plot ('COAD Mean Number of Protein Coding Varaints per Gene per Sample 99 percentile (Normalised)') 
+  showing the mean number of times gene appears per sample  
+  ... is this showing the average number of protein coding variants per gene as required?? 
+      or would I have to look at transcript IDs instead for protein coding variants??
+
+Goes on to filter in relation to 99 percentile genes.
