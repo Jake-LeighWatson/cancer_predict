@@ -7,13 +7,13 @@ This section details the pipeline for isoform switches.
 - Shows the number of isoform swithces
 - Exports new dataframe as csv ('COAD_isoform_switches.csv')
 
-2) The 'COAD_isoform_switches.csv' (from 1) is then passed through the 'COAD_Isoform_gene_to_ensembl' R script.
+2) The 'COAD_isoform_switches.csv' file (from 1) is then passed through the 'COAD_Isoform_gene_to_ensembl' R script.
 
 - Loads COAD_isoform_switches.csv
 - Converts the Entrez ID (since hg19) to Ensembl ID (hg38) via biomaRt 
 - Exports new dataframe containing Ensembl IDs as 'COAD_isoform_switches_ensembl.csv'
 
-3) The 'COAD_isoform_switches_ensembl.csv' (from 2) is then passed through the 'COAD_isoform_switch_filter' script.
+3) The 'COAD_isoform_switches_ensembl.csv' file (from 2) is then passed through the 'COAD_isoform_switch_filter' script.
 
 - Loads the COAD_isoform_switches_ensembl.csv and the transposed FPKM dataframe for COAD
 - Checks for genes not present in FPKM table that are in the isoform switch table
@@ -21,4 +21,18 @@ This section details the pipeline for isoform switches.
 - Filter the FPKM table in relation to the isoform switch Ensembl IDs, whilst keeping the 'Cancer' target column too
 - Export the isoform switch filtered table as 'COAD_FPKM_protein_isoform_filtered.csv'
 
-4) 
+4) The 'COAD_FPKM_protein_isoform_filtered.csv' file (from 3) is then passed through the 'COAD_FPKM_Distribution_isoform' script. 
+
+- Loads the isoform switch filtered FPKM file
+- Creates two seperate tables: one containing tumour samples (where the 'Cancer' column = 1) and one containing normal samples (where 'Cancer' col = 0).
+- Creates new tables for plot labelling purposes
+- Creates plot showing mean FPKM values for cancer and normal samples on same plot 
+    - only isoform switch genes with greatest difference labelled to not overcomplicate graph visuals
+    - Number of isoform switch genes displayed in legend
+    - plot saved as  'COAD_Tumour_vs_Normal_FPKM_Mean_Values_Isoform_Switches.png'
+- Next plot created shows the mean FPKM difference between tumour and normal samples
+    - Not absolute difference => negative FPKM means gene downregulated in tumour, positive FPKM means gene upregulated in tumour
+    - plot saved as 'COAD_Tumour_vs_Normal_FPKM_Mean_Difference_Isoform_Switch_Genes.png'
+ 
+ 5) Note that a similar to script 4 can be used but only plotting 'matched' tumour and normal samples 
+ (script not uploaded due to large amount of scripts already uploaded but can upload if required!)
