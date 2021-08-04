@@ -1,0 +1,12 @@
+This folder contains the script for the initial parsing.
+
+Hence, the COAD FPKM and MAF data has been downloaded using the TCGABiolinks R script previously uploaded.
+
+This data is then passed through the COAD_GE_MAF script which:
+
+- Filters the MAF for protein coding variants (VEP = HIGH or VEP = MODERATE) and saves dataframe as csv (COAD_MAF_protein_coding_full.csv). 
+- Imports the tumour and normal samples FPKM files
+- Filters for protein coding genes (using previously provided R script)
+- Searches for duplicated genes and changes the name of one, whilst dropping the other three duplicates.
+- Transposes and concatenates the tumour and normal samples into one dataframe, with additonal 'Cancer' column where a value of 1 = tumour, 0 = normal.
+- Saves the FPKM dataframes as csvs (one for tumour, one for normal an one containing the concatendated dataframe with all samples). 
