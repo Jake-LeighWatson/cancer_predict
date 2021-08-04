@@ -1,1 +1,4 @@
+This folder contains seperate piplines for parsing and filtering COAD data in relation to isoform switches, eQTLs and protein coding varaints.
+The intial step was to perform 'Initial Parsing' to download and parse the TCGA FPKM and MAF data for COAD. 
+Each folder has its own read_me file detailing the steps, in a numbered and ordered manner, that the scripts were applied to the data.
 
