@@ -1,0 +1,17 @@
+This folder contains three documents as decribed below:
+
+1) A PDF (Project / ML plan.pdf) displaying a report plan for the introduction and methods.
+  Within the Methods section there is a section titled 'Machine Learning' which discusses my plan for the ML part of the project including:
+  - potential ML classifiers to use
+  - potential perfomance metrics
+  - How to handle imbalanced data (not sure if theres a preferred method?)
+  - Cross validation to handle the small sample size 
+  - Feature engineering and selection
+
+2) A jupyter notebook script (COAD_random_forest_cis_95) detailing a pratice attempt at applying a random forest (RF) model to COAD data filtered for cis eQTLs
+  - Starts with a simple RF applied to cis data
+  - Then looks at working with the imbalanced data through applying a class_weight and also resampling.
+  - Quick look at cross validation
+  - Looks at an array of different feature selection techniques.
+
+3) COAD_FPKM_cis_eQTL_95.csv which can be plugged into the above script. 
