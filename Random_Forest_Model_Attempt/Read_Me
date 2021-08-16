@@ -1,0 +1,27 @@
+The folder contains:
+
+1) Input csv file for the model - 'COAD_FPKM_cis_eQTL_95.csv'
+- csv file displaying gene expression data for COAD cancer which has been filtered in relation to assoicated cis eQTL genes. 
+- The csv has a multiindex for column headers displaying gene / hugo symbols on one level and gene Ensembl IDs as another. 
+- Genes essentially act as features in the model.
+- An additional 'Cancer' column discerns if each sample is from a cancer sample (= 1) or from a normal, non-cancerous sample (=0). 
+- Sample IDs act as row indexes and are in TCGA identification format. 
+
+2) My attempt at builing a model - 'COAD_random_forest_cis_95_full_mod'
+- Jupyter notebook script which takes in the csv above
+- Splits the data into features (X) and target (y).
+- Gridsearch performed to determine the best parameters for model (Random Forest in case)
+
+- The best parameters are then plugged into function which contains a pipeline, the pipeline contains:
+    - StandardScaler() first
+    - Then feature enginerring / feature_selection
+    - Followed by the random forest classifier
+    - Where possible a class_weight is provided for the imbalanced data and repeatStratifiedKfold is used.
+    - Cross_val_score returns the ROCAUC score ... with the mean ROCAUC score returned, in relation to n_reperats in a subseqeunt for loop.
+    
+- Another function using SMOTE to acoount for the imbalanced data is then tested
+- Finally another model using the best parameters (similiar to above) is tested but uses cross_validate to return more performance metrics. 
+
+3) I've also included a picture of graph () displaying the difference in FPKM, between tumour and normal samples, for the genes contained in the csv.
+- The noticable difference between the tumour and normal samples at some genes maybe the cause of the high model accuracy ... if no data leakage or the imbalanced data is not contributing? 
+ 
