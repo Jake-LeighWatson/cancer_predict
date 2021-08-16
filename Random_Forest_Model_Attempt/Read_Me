@@ -22,6 +22,6 @@ The folder contains:
 - Another function using SMOTE to acoount for the imbalanced data is then tested
 - Finally another model using the best parameters (similiar to above) is tested but uses cross_validate to return more performance metrics. 
 
-3) I've also included a picture of graph () displaying the difference in FPKM, between tumour and normal samples, for the genes contained in the csv.
+3) I've also included a picture of graph (COAD_Tumour_vs_Normal_FPKM_Mean_Difference_cis_eQTL_95_percentile.png) displaying the difference in FPKM, between tumour and normal samples, for the genes contained in the csv.
 - The noticable difference between the tumour and normal samples at some genes maybe the cause of the high model accuracy ... if no data leakage or the imbalanced data is not contributing? 
  
