@@ -1,0 +1,13 @@
+The folder contains:
+
+1) Two csv files 'isoform_switch_file' and 'all_genes_file'.
+- The isoform file contains the FPKM (gene expression) data for the isoform switch associated genes for COAD (13 genes / features in total)
+- The all genes file contains the FPKM data for all the genes associated with COAD
+
+2) A script (COAD_LogReg_Isoform_model) that applies a logistic regression model to the data
+- First it loads the above csvs (you should just be able to change the file / filepath in the script and then simply press run) 
+- Does train test splits on the isoform data and a random set of genes from the all genes data. 
+  - This is done to keep out 30% of 'unseen' test data to test the final model
+- Grid searches are then performed
+- Followed by some cross validation 
+- Before final modelling is performed on the unseen test data.
