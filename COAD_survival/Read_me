@@ -1,0 +1,17 @@
+The folder contains 5 documents - 2 scripts and 3 input csv's.
+
+1) Script to model COAD survival based on isoform switch genes, comparing the performance metrics to a random set of genes - COAD_LogReg_Isoform_survival.
+- Input the isoform_switch file and all_genes_file csv's to run script. 
+- Script then performs grid search for best logistic regression parameters
+- Then cross validation 
+- Runs model on unseen test set of data
+- Plots PCA explained variance plots
+- Also has a function to extract the SelectFromModel selected features as a list.
+
+2) Script to model COAD survival based on cis_eQTL genes, comparing the performance metrics to a random set of genes - COAD_LogReg_ciseQTL_survival.
+- Input the cis_eQTL_95_file and all_genes_file csv's to run script. 
+- Script then performs grid search for best logistic regression parameters
+- Then cross validation 
+- Runs model on unseen test set of data
+- Plots PCA explained variance plots
+- Also has a function to extract the SelectFromModel selected features as a list.
