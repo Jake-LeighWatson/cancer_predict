@@ -1,0 +1,15 @@
+This folder contains:
+
+1) 'TCGABiolinks_BRCA' R script
+- Shows the script used to download RNA-sequencing data (in FPKM) from the TCGA for both 'Primary Tumor' and 'Solid Tissue Normal' BRCA samples using TCGABiolinks.
+- Two seperate csv's (tumour or normal data) containing FPKM gene expression values (FPKM), alongisde gene HUGO symbol, Ensembl ID and TCGA Sample ID, for BRCA are subsequnetly exported. 
+
+2) 'FPKM_BRCA_tumour.csv'
+- Exported tumour csv mentioned in 1.
+
+3) 'FPKM_BRCA_normal.csv'
+- Exported normal csv mentioned in 1.
+
+4) 'Protein_Coding_Genes' R script
+- Script utilisng biomaRt to download table of human protein coding genes aligned to hg38. 
+- The tsv created is shown in 'ensembl_GRCH38_protein_coding_genes.tsv'
