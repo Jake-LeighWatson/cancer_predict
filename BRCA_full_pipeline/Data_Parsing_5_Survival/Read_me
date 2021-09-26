@@ -1,0 +1,10 @@
+This folder details the parsing and fitering of the survival data.
+
+1) Utilises the 'BRCA_survival_parsing' script.
+
+- Loads the BRCA_clinical.txt file, alongisde the FPKM, isoform switch, cis 95 and trans 95 csv's.
+- Transposes the clinical data and filters to only keep patients that died.
+- Determines median days to death and uses this to ascertain a survival cutoff point (3 years or 1095 days in this case)
+- Applies function that creates a new 'Three_year_status' column and adds a 0 to the column if the patient died before three years and a 1 if the patient died after three years.
+- Performs survival sample mathcing (between clinical data and FPKM data).
+- Then performs filering for isoform switch, cis- and trans-eQTL associated genes- exporting the filtered dataframes BRCA_isoform_survival.csv, BRCA__cis_95_survival.csv and BRCA_trans_95_survival.csv
