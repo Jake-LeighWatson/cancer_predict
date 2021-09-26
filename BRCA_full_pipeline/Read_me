@@ -9,6 +9,7 @@ The pipeline runs in the following order (folders named accordingly):
 1) Data Acquisition (TCGABiolinks)
 2) Data Parsing 1 (Tumour or Normal)
 3) Data Parsing 2 (Cancer Type)
+4) Data Parsing 3 (Isoform Switches)
 
 
 
