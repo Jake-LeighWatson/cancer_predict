@@ -1,4 +1,4 @@
-This section details the pipeline for isoform switches parsing and contains:
+This section details the pipeline for isoform switch parsing and filtering and contains:
 
 1) Isoform switch parsing utilising the BRCA_isoform_parse script
 
