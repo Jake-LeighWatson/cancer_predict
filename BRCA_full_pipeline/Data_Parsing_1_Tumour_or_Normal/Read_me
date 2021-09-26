@@ -1,0 +1,12 @@
+
+This folder utilises files generated during 'Data Acquistion' and includes:
+
+1) 'BRCA_data_parsing_1' script
+- Loads the tumour FPKM, normal FPKM and 'ensembl_GRCH38_protein_coding_genes.tsv' files generated during TCGABiolinks and biomaRt data acquistion. 
+- Filters for protein coding genes
+- Searches for duplicated genes and changes the name of one, whilst dropping the other three duplicates.
+- Transposes and concatenates the tumour and normal samples into one dataframe, with additonal 'Cancer' column where a value of 1 = tumour, 0 = normal.
+- Saves the FPKM dataframes as csvs (one for tumour, one for normal an one containing the concatendated dataframe with all samples). 
+- Performs sample matching by matching TCGA patient ID's between tumour and normal samples
+- Saves the matched FPKM dataframes as csvs (one for tumour matched, one for normal matched an one containing the concatendated matched dataframe with all samples). 
+  - The matched normal csv is included in the folder as an example.
