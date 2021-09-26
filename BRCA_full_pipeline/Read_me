@@ -7,7 +7,7 @@ Jupyter notebook was used to produce the Python scripts which can be viewed with
 The pipeline runs in the following order (folders named accordingly):
 
 1) Data Acquisition (TCGABiolinks)
-2) Data Parsing 1
+2) Data Parsing 1 (Tumour or Normal)
 
 
 
