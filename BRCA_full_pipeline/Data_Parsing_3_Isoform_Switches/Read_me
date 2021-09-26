@@ -1,0 +1,35 @@
+This section details the pipeline for isoform switches parsing and contains:
+
+1) Isoform switch parsing utilising the BRCA_isoform_parse script
+
+- Loads the BRCA isoform switch data downloaded from the iso-ktsp database / paper.
+- Creates new columns containing the gene symbol, Entrez ID and transcript IDs for each isoform switch.
+- Shows the number of isoform swithces.
+- Exports new dataframe as csv ('BRCA_isoform_switches.csv')
+
+2) The 'BRCA_isoform_switches.csv' file (from 1) is then passed through the 'BRCA_Isoform_gene_to_ensembl' R script.
+
+- Loads BRCA_isoform_switches.csv
+- Converts the Entrez ID (since hg19) to Ensembl ID (hg38) via biomaRt 
+- Exports new dataframe containing Ensembl IDs as 'BRCA_isoform_switches_ensembl.csv'
+
+3) The 'BRCA_isoform_switches_ensembl.csv' file (from 2) is then passed through the 'BRCA_isoform_switch_filter_matched' script.
+
+- Loads the BRCA_isoform_switches_ensembl.csv and the transposed matched FPKM dataframe for BRCA
+- Checks for genes not present in FPKM table that are in the isoform switch table
+- if neccessary, drop mismatching genes (not generally required, need to drop a few for a few cancer types)
+- Filter the FPKM table in relation to the isoform switch Ensembl IDs, whilst keeping the 'Cancer' target column too
+- Export the isoform switch filtered table as 'BRCA_FPKM_protein_isoform_filtered_matched.csv'
+
+##### Additional data exploration to see if differences in gene expression, for genes associated with isoform switches, exist between tumour and normal samples #####
+
+4) The 'BRCA_FPKM_protein_isoform_filtered_matched.csv' file (from 3) is then passed through the 'BRCA_FPKM_Distribution_isoform-matched' script. 
+
+- Loads the isoform switch filtered FPKM file
+- Creates two seperate tables: one containing tumour samples (where the 'Cancer' column = 1) and one containing normal samples (where 'Cancer' col = 0).
+- Creates new tables for plot labelling purposes
+- Creates plot showing mean FPKM values for cancer and normal samples on same plot 
+    - only isoform switch genes with greatest difference labelled to not overcomplicate graph visuals
+    - Number of isoform switch genes displayed in legend
+- Next plot created shows the mean FPKM difference between tumour and normal samples
+    - Not absolute difference => negative FPKM means gene downregulated in tumour, positive FPKM means gene upregulated in tumour
