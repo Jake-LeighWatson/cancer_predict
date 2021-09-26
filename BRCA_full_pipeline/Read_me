@@ -7,10 +7,13 @@ Jupyter notebook was used to produce the Python scripts which can be viewed with
 The pipeline runs in the following order (folders named accordingly):
 
 1) Data Acquisition (TCGABiolinks)
-2) 
+2) Data Parsing 1
+
 
 
 Please refer to the read_me files within each folder throughout.
+Note that some input and output csv files were too big to upload to git.
+Additionally, if running the scripts externally/seperately the input file paths / names will need to changed to accomodate your file paths / names. 
 
 Please refer to section 2.1 in the report and use the links in Table A.1 to access the isoform, eQTL and clinical data - downloading this data is not covered in this pipepline.
 
