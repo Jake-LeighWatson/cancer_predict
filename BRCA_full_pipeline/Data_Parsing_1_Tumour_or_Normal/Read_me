@@ -1,7 +1,7 @@
 
 This folder utilises files generated during 'Data Acquistion' and includes:
 
-1) 'BRCA_data_parsing_1' script
+1) 'BRCA_data_parsing_1_T_or_N' script
 - Loads the tumour FPKM, normal FPKM and 'ensembl_GRCH38_protein_coding_genes.tsv' files generated during TCGABiolinks and biomaRt data acquistion. 
 - Filters for protein coding genes
 - Searches for duplicated genes and changes the name of one, whilst dropping the other three duplicates.
