@@ -1,0 +1,8 @@
+This folder contains:
+
+1) 'Cancer_type_parsing' script
+- Imports the full (tumour and normal concat) FPKM matched csv files for BRCA, KIRC, LUAD and THCA.
+- Adds new 'Cancer_type' and subsequent 'Cancer_tissue_status' column to each dataframe.
+- Concatenates the BRCA, KIRC, LUAD and THCA dataframes together into an all_cancers dataframe.
+- Checks the all_cancer dataframe for missing values.
+- Exports the all_cancer dataframe as 'all_cancers_SS_filtered.csv'
