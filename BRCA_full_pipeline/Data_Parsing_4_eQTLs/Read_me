@@ -1,4 +1,4 @@
-This section details the pipeline for the 95 percentile eQTLs (genes with the greatest number of associated of cis and trans eQTLs) and contains:
+This section details the pipeline for the 95 percentile eQTLs (genes with the greatest number of associated of cis and trans eQTLs), including parsing and filtering, and contains:
 
 1) eQTL parsing utilising the 'BRCA_eQTL_parsing' script
 
@@ -28,7 +28,7 @@ This section details the pipeline for the 95 percentile eQTLs (genes with the gr
 5) The 2 csv's from 4 and the FPKM table are passed through the 'BRCA_eQTL_95_filtered_distribution_matched' script.
            
   Filtering first
-- Loads the tables and filtes the FPKM table in relation to the cis and trans eQTL Ensembl IDs, whilst keeping the 'Cancer' target column too
+- Loads the tables and filters the FPKM table in relation to the cis and trans eQTL Ensembl IDs, whilst keeping the 'Cancer' target column too
 - Export the cis eQTL filtered table as 'BRCA_FPKM_cis_eQTL_95_matched.csv','BRCA_FPKM_trans_eQTL_95_matched.csv'
   
   
