@@ -1,0 +1,45 @@
+This section details the pipeline for the 95 percentile eQTLs (genes with the greatest number of associated of cis and trans eQTLs) and contains:
+
+1) eQTL parsing utilising the 'BRCA_eQTL_parsing' script
+
+- Loads the 2 txt files containing the cis and trans eQTL data from the PancanQTL database. 
+- Creates new columns containing the gene symbol and Entrez ID eQTL
+- Exports the two dataframes containning cis and trans eQTL data as two seperate csv's (BRCA_cis_eQTL.csv and BRCA_trans_eQTL.csv)
+
+2) The BRCA cis and trans eQTL csv's from 1 are then passed through the 'BRCA_eQTL_parsing_95' script
+
+- Loads the two csv's
+- Creates new dataframes that only contain the genes where the gene.value_count() is >= 95% quantile
+- These two dataframes are then exported (containing value count as an additional column) as csv's BRCA_cis_eQTL_95.csv and BRCA_trans_eQTL_95.csv
+
+3) The csv's from 2 are then passed through the 'BRCA_eQTL_ensembl_95' R script.
+- Loads the cis and trans 95 csv's
+- Uses biomaRt to convert both the Entrez ID and Gene Symbols (since hg19) to Ensembl ID (hg38)
+    - Conversion on both Entrex and Gene symbol is performed to maximise the number of Ensembl IDs returned since we can loose some during conversion
+- The Entrez and Symbol conversions are returned in seperate tables and are, seperately, joined to the original cis and trans 95 tables (so still have value count col)
+- The 4 new tables are then exported as csv's: BRCA_cis_entrez_95.csv, BRCA_cis_symbol_95.csv, BRCA_trans_entrez_95.csv, BRCA_trans_symbol_95.csv
+
+4) The 4 csv's from 3, alongside FPKM files, are loaded and passed through the 'BRCA_eQTL_Ensembl_95' script. 
+            ### Will detail for cis eQTLs, same process repeated for trans eQTLs ###
+- The cis_symbol_95 and cis_entrez_95 tables from 3 are concat together whilst dropping any NA or duplicated values in the Ensembl ID column
+- Check for duplicated gene symbols and check which (if any) associated Ensembl ID are present in FPKM - drop duplicates with no matching Ensembl ID
+- Export the two tables now with the Ensembl IDs and no duplicates to csv's: BRCA_cis_eQTL_95_ensembl.csv, BRCA_trans_eQTL_95_ensembl.csv 
+
+5) The 2 csv's from 4 and the FPKM table are passed through the 'BRCA_eQTL_95_filtered_distribution_matched' script.
+           
+  Filtering first
+- Loads the tables and filtes the FPKM table in relation to the cis and trans eQTL Ensembl IDs, whilst keeping the 'Cancer' target column too
+- Export the cis eQTL filtered table as 'BRCA_FPKM_cis_eQTL_95_matched.csv','BRCA_FPKM_trans_eQTL_95_matched.csv'
+  
+  
+ 
+ #### Additonal Distribution plots for data exploration #####
+- Creates two seperate tables: one containing tumour samples (where the 'Cancer' column = 1) and one containing normal samples (where 'Cancer' col = 0)
+- Creates new tables and series for plots and plot labelling purposes
+- Plot created showing the mean FPKM difference between tumour and normal samples for both cis and trans
+    - Not absolute difference => negative FPKM means gene downregulated in tumour, positive FPKM means gene upregulated in tumour
+    *** Note that an example of an absolute difference plot is shown at the end of the script
+    - only cis and trans eQTLs with greatest difference labelled to not overcomplicate graph visuals
+    - Number of cis and trans eQTL genes displayed in legend
+- Creates plots showing mean FPKM values for cancer and normal samples on same plot
+   
