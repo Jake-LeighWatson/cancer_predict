@@ -1,0 +1,35 @@
+This folder contains three scripts displaying the RF models applied for cancer type classification with either isoform switch, cis-eQTL or trans-eQTL filtering.
+
+1) Will detail the isoform switch-based 'Cancer_Type_RF_iso' script - simliar process followed for cis- and trans-eQTL
+
+- Load the isoform switch filtered, matched csv's for BRCA, KIRC, LUAD and THCA, alongside the matched csv containing all protein coding genes with the 4 cancer types combined from the Cancer Type data parsing.
+- Check for missing data
+
+#### Note that the script initially displays PCA plots which was used for additional data exploration ####
+
+- 'Unique' (genes unique to one cancer type) and 'Pan-cancer' (genes shared between two or more cancer types) filtering performed - PCA plots produced for both.
+- LabelEncoder used to numerically encode the cancer types and tissue status.
+- Do initial train_test_split on all genes, unqiue and pan-cancer sets to extract the 30% of test data (no training performed on this data) and 70% development/training data - use stratify to keep tumour to normal ratio during split 
+- Repeat the process for three random sets of genes by using .sample function on the dataframe containing all protein coding genes for corresponding unique and pan-cancer sets.
+
+Grid search RF function then created which:
+  - Applies default RF classifier utilising the previously detailed Pipeline and repeat stratified 3 fold CV.
+  - Searches across a parameter grid that encompasses RF n_estimators and max_features. 
+  - Returns a dictionary containing the best parameters.
+  - This function is run on both the unique and pan-cancer isoform switch subset training data and the three random unique and pan-cancer gene subsets (individually) training data.
+    - Also run seperately on training set containing all genes (no filteirng).
+  
+- Cross validation fuction then created to evaluate model performance using the best parameters determined using the grid search.
+  - Again this function uses a Pipeline and repeat stratified 3 fold CV.
+  - However, rather than default RF classifier, the grid search determined paramters are set for the RF classifier
+  - Function then returns OVR AUROC score and other metrics (F1, precision, recall, accuracy - all weighted or balanced for multiclass classification)
+  - This function is again run on the unique and pan-cancer isoform switch subset training data and the three random unique and pan-cancer gene subsets (individually) training data.
+    - Also run seperately on training set containing all genes (no filteirng).
+
+- Model test function is then created to evaluate the models performance on the unused test data. 
+  - Function uses the Pipeline with grid search determined parameters used by the RF classifier - but no CV or stratified K fold performed. 
+  - The Pipeline is fit to the training / development data and then predictions are made on the test data. 
+  - OVR AUROC score and a classification report is returned. 
+  - This function is run on the unique and pan-cancer isoform switch subsets test data with the OVR AUROC scores returned taken as the model performance provided in the report.
+  - This function is also run on the three random unique and pan-cancer gene subsets (individually) test data - with the mean AUROC score and the standard deviation between the three provided in the report.
+  - Function also ran on test set containing all genes (no filtering) - this was one of three models ran (one in the iso script, one during the cis script and one during the trans-script) on the all genes set, with the mean value between the three provided in the report.
