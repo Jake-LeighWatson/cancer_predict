@@ -4,8 +4,9 @@ This folde contains the Python script used for model selection.
 
 - Loads the BRCA isoform switch and eQTL filtered files for both tumour or normal and survival classification.
 - Checks for missing data
-- Splits the data into X (features / genes) and y (target column - either 'Cancer' (T or N) or 'Three_year_status (survival))
+- Splits the data into X (features / genes) and y (target column - either 'Cancer' (T or N) or 'Three_year_status' (survival))
 - Function created to compare models across the different data subsets
   - Creates lists of classifiers (LR,RF,SVC) and corresponsing classifiers to be used in feature selection
   - Pipeline incorporating StandardScaler, PCA, SelectFromModel feature selection and a classifier
-  - For loop 
+  - For loop that irerates over the classifiers, incorporating the pipeline and repeat stratified 3 fold CV - returning the mean AUROC score (alongisde other metrics)
+- This function is then applied to all subsets of data. 
