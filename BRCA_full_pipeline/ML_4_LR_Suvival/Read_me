@@ -1,0 +1,31 @@
+This folder contains three scripts displaying the LR models applied for survival classification with either isoform switch, cis-eQTL or trans-eQTL filtering.
+
+1) Will detail the isoform switch-based 'BRCA_LR_Iso_Survival' script - simliar process followed for cis- and trans-eQTL
+
+- Load the isoform switch filtered, survival matched BRCA csv, alongside the matched csv containing all protein coding genes (for taking random subsets).
+- Check for missing data
+- Check survival ratio (died before cutoff against died after cutoff)
+- Do initial train_test_split to extract the 30% of test data (no training performed on this data) and 70% development/training data - use stratify to keep survival ratio during split 
+- Repeat the process for three random sets of genes by using .sample function on the dataframe containing all protein coding genes.
+
+- Grid search function then created which:
+  - Applies default LR classifier utilising the previously detailed Pipeline and repeat stratified 3 fold CV.
+  - Searches across a parameter grid that encompasses LR penalty, C value and solver. 
+  - Returns a dictionary containing the best parameters.
+  - This function is run on the isoform switch subset training data and the three random gene subsets (individually) training data.
+
+- Cross validation fuction then created to evaluate model performance using the best parameters determined using the grid search.
+  - Again this function uses a Pipeline and repeat stratified 3 fold CV.
+  - However, rather than default LR classifier, the grid search determined paramters are set for the LR classifier
+  - Function then returns AUROC score and other metrics (F1, precision, recall, accuracy)
+  - This function is again run on the isoform switch subset training data and the three random gene subsets (individually) training data.
+
+- Model test function is then created to evaluate the models performance on the unused test data. 
+  - Function uses the Pipeline with grid search determined parameters used by the LR classifier - but no CV or stratified K fold performed. 
+  - The Pipeline is fit to the training / development data and then predictions are made on the test data. 
+  - AUROC score and a classification report is returned. 
+  - This function is run on the isoform switch subset test data with the AUROC score returned taken as the model performance provided in the report.
+  - This function is also run on the three random gene subsets (individually) test data - with the mean AUROC score and the standard deviation between the three provided in the report.
+ 
+
+##### Additional function at the end to return the model feature / gene importance #####
