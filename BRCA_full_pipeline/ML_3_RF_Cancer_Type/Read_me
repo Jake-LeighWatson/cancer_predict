@@ -2,7 +2,8 @@ This folder contains three scripts displaying the RF models applied for cancer t
 
 1) Will detail the isoform switch-based 'Cancer_Type_RF_iso' script - simliar process followed for cis- and trans-eQTL
 
-- Load the isoform switch filtered, matched csv's for BRCA, KIRC, LUAD and THCA, alongside the matched csv containing all protein coding genes with the 4 cancer types combined from the Cancer Type data parsing.
+- Load the isoform switch filtered, matched csv's for BRCA, KIRC, LUAD and THCA ('ensembl csv's form isoform data parsing), alongside the matched csv containing all protein coding genes with the 4 cancer types combined from the Cancer Type data parsing.
+  - Additional isoform pan-cancer file required and included in folder for isoform switches (pan-cancer filtering performed in the script for cis- and trans-eQTLs)
 - Check for missing data
 
 #### Note that the script initially displays PCA plots which was used for additional data exploration ####
