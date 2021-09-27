@@ -4,7 +4,7 @@ This folder contains three scripts displaying the LR models applied for tumour o
 
 - Load both:
   - isoform switch filtered, matched BRCA csv (provided in folder as 'BRCA_FPKM_protein_isoform_filtered_matched.csv') 
-  - alongside the matched csv containing all protein coding genes (for taking random subsets - provided in folder as 'BRCA_FPKM_protein_all_matched.csv').
+  - alongside the matched csv containing all protein coding genes (for taking random subsets - too big to upload csv but csv is created during tumour or normal data parsing).
 - Check for missing data
 - Check tumour to normal sample ratio 
 - Do initial train_test_split to extract the 30% of test data (no training performed on this data) and 70% development/training data - use stratify to keep tumour to normal ratio during split 
