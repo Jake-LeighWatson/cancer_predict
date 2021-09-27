@@ -14,9 +14,8 @@ The pipeline runs in the following order (folders named accordingly):
 6) Data Parsing 5 (Survival)
 7) ML 1 (Model Selection)
 8) ML 2 (LR Tumour or Normal)
-
-
-
+9) ML 3 (RF Cancer Type)
+10) ML 4 (LR Survival)
 
 Please refer to the read_me files within each folder throughout.
 Note that some input and output csv files were too big to upload to git.
